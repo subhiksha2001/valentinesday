@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day</title>
+<style>
+  body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-align: center;
+    background-color: #ffe6f2; /* Light Pink */
+    color: #ff4d88; /* Pink */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+  }
+  .emoji {
+    position: absolute;
+    animation: flying 10s linear infinite;
+    font-size: 50px;
+  }
+
+  @keyframes flying {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+    }
+  }
+  #message {
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #ff4d88; /* Pink */
+  }
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ff80ab; /* Lighter Pink */
+    color: white;
+    transition: background-color 0.3s;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+  button:hover {
+    background-color: #ff4081; /* Pink */
+  }
+  .heart {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff4d88; /* Pink */
+    transform: rotate(45deg);
+    animation: heartAnimation 10s linear infinite;
+  }
+
+  @keyframes heartAnimation {
+    0% {
+      transform: translateY(0) rotate(45deg);
+    }
+    100% {
+      transform: translateY(-100vh) rotate(405deg);
+    }
+  }
+</style>
+</head>
+<body>
+<div id="message">Will you be my Valentine?</div>
+<div class="buttons-container">
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn">No</button>
+</div>
+
+<script>
+  const emojis = ["💖", "💗", "💜", "❤️", "😍", "😘", "🥰", "💘"];
+  const container = document.body;
+
+  function createEmoji() {
+    const emoji = document.createElement('span');
+    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.classList.add('emoji');
+    emoji.style.left = `${Math.random() * window.innerWidth}px`;
+    container.appendChild(emoji);
+    setTimeout(() => {
+      container.removeChild(emoji);
+    }, 10000); // Remove emoji after 10 seconds
+  }
+
+  setInterval(createEmoji, 1000); // Generate an emoji every second
+
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+
+  yesBtn.addEventListener("click", function() {
+    const responses = [
+      "Yay! Let's make this Valentine's Day unforgettable! 😉💖",
+      "You won't regret it! I have lots of surprises in store for you! 😏💘",
+      "Great choice! Get ready for an adventure with me! 😘💋"
+    ];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    alert("Happy Valentine's Day! ❤️");
+    displayMessage(responses[randomIndex]);
+  });
+
+  noBtn.addEventListener("click", function() {
+    const messages = ["Reconsider, please...", "Don't leave me hanging!", "Why not? 😢", "Just say yes! 🥺"];
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    displayMessage(messages[randomIndex]);
+  });
+
+  function displayMessage(message) {
+    document.getElementById("message").textContent = message;
+  }
+</script>
+
+<script>
+  // Function to create hearts in the background
+  function createHearts() {
+    const heartsContainer = document.createElement('div');
+    heartsContainer.classList.add('hearts-container');
+    document.body.appendChild(heartsContainer);
+
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * window.innerWidth}px`;
+      heart.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      heartsContainer.appendChild(heart);
+    }
+  }
+
+  createHearts(); // Create hearts when the page loads
+</script>
+</body>
+</html>
