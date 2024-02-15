@@ -43,7 +43,23 @@
     display: flex;
     justify-content: center;
   }
-  button {
+  #yesBtn {
+    font-size: 18px;
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ff80ab; /* Lighter Pink */
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+  #yesBtn:hover {
+    background-color: #ff4081; /* Pink */
+    transform: scale(1.1);
+  }
+  #noBtn {
     font-size: 18px;
     padding: 10px 20px;
     margin: 10px;
@@ -55,7 +71,7 @@
     transition: background-color 0.3s;
     font-family: "Comic Sans MS", cursive, sans-serif;
   }
-  button:hover {
+  #noBtn:hover {
     background-color: #ff4081; /* Pink */
   }
   .heart {
@@ -119,10 +135,17 @@
     const messages = ["Reconsider, please...", "Don't leave me hanging!", "Why not? 😢", "Just say yes! 🥺"];
     const randomIndex = Math.floor(Math.random() * messages.length);
     displayMessage(messages[randomIndex]);
+    increaseButtonSize(yesBtn);
   });
 
   function displayMessage(message) {
     document.getElementById("message").textContent = message;
+  }
+
+  function increaseButtonSize(button) {
+    const currentSize = window.getComputedStyle(button).fontSize;
+    const newSize = parseFloat(currentSize) * 1.1;
+    button.style.fontSize = newSize + "px";
   }
 </script>
 
@@ -142,7 +165,4 @@
     }
   }
 
-  createHearts(); // Create hearts when the page loads
-</script>
-</body>
-</html>
+  createHearts(); //
